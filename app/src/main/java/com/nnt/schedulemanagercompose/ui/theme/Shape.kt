@@ -1,4 +1,4 @@
-package com.nnt.schedulemangenercompose.ui.theme
+package com.nnt.schedulemanagercompose.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

@@ -9,13 +9,13 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ScheduleMangenerCompose"
+        android:name=".app.App"
+        android:theme="@style/Theme.ScheduleManagerCompose"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.nnt.schedulemanagercompose.app.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.ScheduleMangenerCompose">
+            android:theme="@style/Theme.ScheduleManagerCompose">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

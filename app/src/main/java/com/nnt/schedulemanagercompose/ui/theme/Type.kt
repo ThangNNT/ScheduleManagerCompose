@@ -1,4 +1,4 @@
-package com.nnt.schedulemangenercompose.ui.theme
+package com.nnt.schedulemanagercompose.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
