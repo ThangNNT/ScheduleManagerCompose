@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -23,6 +24,7 @@ import com.nnt.schedulemanagercompose.ui.common.VerticalSpacer
 import com.nnt.schedulemanagercompose.ui.component.Day
 import com.nnt.schedulemanagercompose.ui.component.DaysOfWeekTitle
 import com.nnt.schedulemanagercompose.ui.component.MonthYear
+import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -32,6 +34,7 @@ import java.time.YearMonth
  */
 @Composable
 fun CalendarScreen(){
+    val coroutineScope = rememberCoroutineScope()
     val currentMonth = remember { YearMonth.now() }
     val startMonth = remember { currentMonth.minusMonths(100) } // Adjust as needed
     val endMonth = remember { currentMonth.plusMonths(100) } // Adjust as needed
@@ -52,7 +55,22 @@ fun CalendarScreen(){
             .padding(horizontal = 16.dp)
             .fillMaxSize()
     ) {
-        MonthYear(yearMonth = state.firstVisibleMonth.yearMonth)
+        MonthYear(
+            yearMonth = state.firstVisibleMonth.yearMonth,
+            onArrowLeftClick = {
+                coroutineScope.launch {
+                    state.animateScrollToMonth(it.minusMonths(-1))
+                }
+            }, onArrowRightClick = {
+                coroutineScope.launch {
+                    state.animateScrollToMonth(it.minusMonths(1))
+                }
+            }, onMonthClick = {
+
+
+            }, onYearClick = {
+
+            })
         DaysOfWeekTitle(daysOfWeek = daysOfWeek) // Use the title here
         HorizontalCalendar(state = state, dayContent = {
             Day(
