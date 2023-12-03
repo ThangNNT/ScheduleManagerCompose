@@ -41,7 +41,7 @@ fun HeaderView(header: String, isExpand: Boolean, onExpandChanged: (Boolean) -> 
         }, verticalAlignment = Alignment.CenterVertically
     ) {
         Text(text = header, color = TextColorPrimary, style = MaterialTheme.typography.h4)
-        HorizontalSpacer(height = 8.dp)
+        HorizontalSpacer(width = 8.dp)
         Image(
             painter = painterResource(id = icon),
             contentDescription = "collapse or expand"

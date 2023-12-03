@@ -117,7 +117,7 @@ fun TaskItemView(
                     .align(CenterVertically),
                 colorFilter = ColorFilter.tint(checkIconTint.value)
             )
-            HorizontalSpacer(height = 8.dp)
+            HorizontalSpacer(width = 8.dp)
             Column(
                 modifier = Modifier
                     .weight(1f, fill = true)
@@ -130,7 +130,7 @@ fun TaskItemView(
                     } else MaterialTheme.typography.body1,
                     color = ColorProvider.appColors.textPrimary
                 )
-                VerticalSpacer(width = 4.dp)
+                VerticalSpacer(height = 4.dp)
                 Row (verticalAlignment = CenterVertically){
                     Text(
                         text = timeString, style = if (data.isComplete) {
@@ -139,7 +139,7 @@ fun TaskItemView(
                         color = ColorProvider.appColors.textSecondary
                     )
                     if (data.enableNotification){
-                        HorizontalSpacer(height = 8.dp)
+                        HorizontalSpacer(width = 8.dp)
                         Image(
                             painter = painterResource(id = R.drawable.ic_notification),
                             contentDescription = "ic notification",
@@ -149,7 +149,7 @@ fun TaskItemView(
                     }
                 }
             }
-            HorizontalSpacer(height = 8.dp)
+            HorizontalSpacer(width = 8.dp)
             // ensure layouts were calculated
             if (boxWidth.value>0.dp){
                 Row(
@@ -164,7 +164,7 @@ fun TaskItemView(
                             onEdit.invoke(data)
                         }
                     )
-                    HorizontalSpacer(height = 16.dp)
+                    HorizontalSpacer(width = 16.dp)
                     ActionView(
                         label = stringResource(id = R.string.delete),
                         icon = R.drawable.ic_trash,

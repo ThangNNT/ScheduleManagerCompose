@@ -1,6 +1,8 @@
 package com.nnt.schedulemanagercompose.extension
 
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
@@ -17,4 +19,9 @@ fun Long.toDateString(format: String = "dd/MM/yyyy"): String {
         ex.printStackTrace()
         ""
     }
+}
+
+fun LocalDate.toString(format: String): String {
+    val simpleDateFormat = DateTimeFormatter.ofPattern(format)
+    return this.format(simpleDateFormat)
 }

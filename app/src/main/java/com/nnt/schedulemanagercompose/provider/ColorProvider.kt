@@ -18,9 +18,12 @@ abstract class AppColor {
     abstract val windowBackground: Color
     abstract val cardBackground: Color
     abstract val textPrimary: Color
+    abstract val textPrimaryContrast: Color
     abstract val textSecondary: Color
     abstract val completeTaskIconTint: Color
     abstract val incompleteTaskIconTint: Color
+    abstract val selectDateColor: Color
+    abstract val selectedDateText: Color
 
     companion object {
         val Default = object: AppColor(){
@@ -36,12 +39,18 @@ abstract class AppColor {
                 get() = Color.LightGray
             override val textPrimary: Color
                 get() = TextColorPrimary
+            override val textPrimaryContrast: Color
+                get() = Color.White
             override val textSecondary: Color
                 get() = TextColorSecondary
             override val completeTaskIconTint: Color
                 get() = Color(0xFF4CAF50)
             override val incompleteTaskIconTint: Color
                 get() = Color(0xFF676767)
+            override val selectDateColor: Color
+                get() = Color.DarkGray
+            override val selectedDateText: Color
+                get() = textPrimaryContrast
 
         }
     }

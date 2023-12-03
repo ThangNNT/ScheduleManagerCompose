@@ -12,7 +12,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.nnt.schedulemanagercompose.extension.pxToDp
-import com.nnt.schedulemanagercompose.ui.screen.CalendarScreen
+import com.nnt.schedulemanagercompose.ui.screen.calendar.CalendarScreen
 import com.nnt.schedulemanagercompose.ui.screen.home.HomeScreen
 import com.nnt.schedulemanagercompose.ui.screen.SettingScreen
 
@@ -40,11 +40,7 @@ fun Graph(
             HomeScreen()
         }
         composable(Route.Calendar.route) {
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .padding(top = statusBarHeight)) {
-                CalendarScreen()
-            }
+            CalendarScreen()
         }
         composable(Route.Setting.route) {
             Box(modifier = Modifier

@@ -2,17 +2,13 @@ package com.nnt.schedulemanagercompose.app
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.nnt.schedulemanagercompose.R
 import com.nnt.schedulemanagercompose.app.bottombar.BottomBar
 
 /**
@@ -29,13 +25,6 @@ fun AppScreen(appViewModel: AppViewModel){
         Scaffold(
             bottomBar = {
                 BottomBar(navController = navController)
-            },
-            floatingActionButton = {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_fab),
-                    contentDescription = "fab button",
-                    modifier = Modifier.size(32.dp)
-                )
             }
         ) {
             Graph(

@@ -11,11 +11,11 @@ import androidx.compose.ui.unit.Dp
  * Created by ThangNNT on 02/12/2023.
  */
 @Composable
-fun VerticalSpacer(width: Dp){
-    Spacer(modifier = Modifier.height(width))
+fun VerticalSpacer(height: Dp){
+    Spacer(modifier = Modifier.height(height))
 }
 
 @Composable
-fun HorizontalSpacer(height: Dp){
-    Spacer(modifier = Modifier.width(height))
+fun HorizontalSpacer(width: Dp){
+    Spacer(modifier = Modifier.width(width))
 }

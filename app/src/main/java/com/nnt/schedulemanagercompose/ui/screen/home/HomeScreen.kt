@@ -44,7 +44,7 @@ fun HomeScreen(){
         .fillMaxSize()
         .padding(horizontal = 16.dp)) {
         item {
-            VerticalSpacer(width = statusBarHeight() + 16.dp)
+            VerticalSpacer(height = statusBarHeight() + 16.dp)
         }
         item {
             HeaderView(header = "header1", isExpand = isHeaderExpand, onExpandChanged = {
@@ -54,7 +54,7 @@ fun HomeScreen(){
         if (isHeaderExpand){
             items(count = tasks.size){
                 Column {
-                    VerticalSpacer(width = 8.dp)
+                    VerticalSpacer(height = 8.dp)
                     TaskItemView(
                         data = tasks[it],
                         onCheckedChange = { task, isComplete ->
@@ -70,7 +70,7 @@ fun HomeScreen(){
             }
         }
         item { 
-            VerticalSpacer(width = 120.dp)
+            VerticalSpacer(height = 120.dp)
         }
     }
 }
