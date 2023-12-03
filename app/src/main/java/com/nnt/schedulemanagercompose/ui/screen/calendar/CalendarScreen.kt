@@ -3,12 +3,8 @@ package com.nnt.schedulemanagercompose.ui.screen.calendar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -16,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.kizitonwose.calendar.compose.HorizontalCalendar
 import com.kizitonwose.calendar.compose.rememberCalendarState
 import com.kizitonwose.calendar.core.daysOfWeek
+import com.nnt.schedulemanagercompose.AppConstant
 import com.nnt.schedulemanagercompose.extension.statusBarHeight
 import com.nnt.schedulemanagercompose.extension.toString
 import com.nnt.schedulemanagercompose.provider.ColorProvider
@@ -23,10 +20,11 @@ import com.nnt.schedulemanagercompose.ui.common.HorizontalSpacer
 import com.nnt.schedulemanagercompose.ui.common.VerticalSpacer
 import com.nnt.schedulemanagercompose.ui.component.Day
 import com.nnt.schedulemanagercompose.ui.component.DaysOfWeekTitle
-import com.nnt.schedulemanagercompose.ui.component.MonthYear
+import com.nnt.schedulemanagercompose.ui.component.MonthYearView
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.LocalDate
+import java.time.Month
 import java.time.YearMonth
 
 /**
@@ -35,19 +33,16 @@ import java.time.YearMonth
 @Composable
 fun CalendarScreen(){
     val coroutineScope = rememberCoroutineScope()
-    val currentMonth = remember { YearMonth.now() }
-    val startMonth = remember { currentMonth.minusMonths(100) } // Adjust as needed
-    val endMonth = remember { currentMonth.plusMonths(100) } // Adjust as needed
     val daysOfWeek = remember { daysOfWeek(DayOfWeek.MONDAY) }
-    val state = rememberCalendarState(
-        startMonth = startMonth,
-        endMonth = endMonth,
-        firstVisibleMonth = currentMonth,
-        firstDayOfWeek = daysOfWeek.first()
-    )
     val selectedDate = remember {
         mutableStateOf<LocalDate>(LocalDate.now())
     }
+    val state = rememberCalendarState(
+        startMonth = YearMonth.of(AppConstant.CALENDAR_MIN_YEAR, Month.JANUARY),
+        endMonth = YearMonth.of(AppConstant.CALENDAR_MAX_YEAR, Month.DECEMBER),
+        firstVisibleMonth = YearMonth.now(),
+        firstDayOfWeek = daysOfWeek.first()
+    )
     Column(
         modifier = Modifier
             .background(color = ColorProvider.appColors.windowBackground)
@@ -55,21 +50,25 @@ fun CalendarScreen(){
             .padding(horizontal = 16.dp)
             .fillMaxSize()
     ) {
-        MonthYear(
+        MonthYearView(
             yearMonth = state.firstVisibleMonth.yearMonth,
             onArrowLeftClick = {
                 coroutineScope.launch {
-                    state.animateScrollToMonth(it.minusMonths(-1))
+                    state.animateScrollToMonth(it.minusMonths(1))
                 }
             }, onArrowRightClick = {
                 coroutineScope.launch {
-                    state.animateScrollToMonth(it.minusMonths(1))
+                    state.animateScrollToMonth(it.plusMonths(1))
                 }
-            }, onMonthClick = {
-
-
-            }, onYearClick = {
-
+            }, onYearMonthChanged = {
+                coroutineScope.launch {
+                    state.scrollToMonth(it)
+                }
+            }, onRefresh = {
+                coroutineScope.launch {
+                    state.scrollToMonth(YearMonth.now())
+                    selectedDate.value = LocalDate.now()
+                }
             })
         DaysOfWeekTitle(daysOfWeek = daysOfWeek) // Use the title here
         HorizontalCalendar(state = state, dayContent = {
