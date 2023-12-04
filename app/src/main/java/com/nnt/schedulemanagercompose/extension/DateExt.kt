@@ -1,5 +1,6 @@
 package com.nnt.schedulemanagercompose.extension
 
+import com.nnt.schedulemanagercompose.AppConstant
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -25,3 +26,10 @@ fun LocalDate.toString(format: String): String {
     val simpleDateFormat = DateTimeFormatter.ofPattern(format)
     return this.format(simpleDateFormat)
 }
+
+fun String.toLocalDate(pattern: String): LocalDate {
+    return LocalDate.parse(this, DateTimeFormatter.ofPattern(pattern))
+}
+
+fun LocalDate.toStandardString() = this.toString(AppConstant.DATE_STANDARD_PATTERN)
+fun String.fromStandardToLocalDate() = this.toLocalDate(AppConstant.DATE_STANDARD_PATTERN)

@@ -14,7 +14,9 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.nnt.schedulemanagercompose.AppState
 import com.nnt.schedulemanagercompose.app.bottombar.BottomBar
+import com.nnt.schedulemanagercompose.extension.toStandardString
 import com.nnt.schedulemanagercompose.ui.component.NewEventButtonSheet
+import com.nnt.schedulemanagercompose.ui.screen.create.NewTaskScreenData
 import kotlinx.coroutines.launch
 
 /**
@@ -42,7 +44,9 @@ fun AppScreen(appViewModel: AppViewModel){
         }
     }
     NewEventButtonSheet(state = AppState.newEventSheetState, onSelectNewTask = {
-
+        AppState.eventSheetInitialDate?.let {
+            Route.NewTask.navigate(navController, data = NewTaskScreenData(it.toStandardString()))
+        }
     }, onSelectAnniversary = {
 
     }, {
