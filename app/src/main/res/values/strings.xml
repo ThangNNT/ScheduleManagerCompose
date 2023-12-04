@@ -2,4 +2,8 @@
     <string name="app_name">ScheduleManagerCompose</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="choose_your_event_type">Choose your event type</string>
+    <string name="new_task">New task</string>
+    <string name="anniversary">Anniversary</string>
+    <string name="count_the_days">Count the days</string>
 </resources>

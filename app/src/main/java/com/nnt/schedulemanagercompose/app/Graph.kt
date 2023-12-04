@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
-import com.google.accompanist.systemuicontroller.SystemUiController
 import com.nnt.schedulemanagercompose.ui.screen.calendar.CalendarScreen
 import com.nnt.schedulemanagercompose.ui.screen.home.HomeScreen
 import com.nnt.schedulemanagercompose.ui.screen.setting.SettingScreen
@@ -21,7 +20,6 @@ import com.nnt.schedulemanagercompose.ui.screen.setting.SettingScreen
 fun Graph(
     startDestination: String,
     navController: NavHostController,
-    systemUiController: SystemUiController,
     viewModel: AppViewModel
 ){
     AnimatedNavHost(
